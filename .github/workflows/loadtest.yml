@@ -1,0 +1,19 @@
+name: Load Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  loadtest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run k6 load test
+        run: |
+          docker run --rm -v $(pwd)/load-tests/specs:/k6scripts loadimpact/k6 run /k6scripts/firstTest.spec.js
+
