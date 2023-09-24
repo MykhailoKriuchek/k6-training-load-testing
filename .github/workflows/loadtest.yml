@@ -3,7 +3,7 @@ name: Load Test
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   loadtest:
@@ -15,5 +15,4 @@ jobs:
 
       - name: Run k6 load test
         run: |
-          docker run --rm -v $(pwd)/load-tests/specs:/k6scripts loadimpact/k6 run /k6scripts/firstTest.spec.js
-
+          docker run --rm -v $(pwd)/load-tests:/k6scripts loadimpact/k6 run /k6scripts/specs/firstTest.test.js
